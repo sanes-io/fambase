@@ -1,6 +1,9 @@
 import React from 'react';
-import HelloWorld from './HelloWorld';
 
 export default function App() {
-  return <HelloWorld />;
+  return (
+    <div className="text-center">
+      <h1 className="font-semibold text-3xl">Hello World</h1>
+    </div>
+  );
 }
