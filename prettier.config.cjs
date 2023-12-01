@@ -1,7 +1,5 @@
 // prettier.config.js
-const config = {
-  plugins: ["prettier-plugin-tailwindcss"],
+module.exports = {
   singleQuote: true,
   printWidth: 80,
 };
-module.exports = config;
