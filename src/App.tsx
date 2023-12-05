@@ -1,9 +1,19 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import AppLayout from './components/AppLayout';
+import Login from './features/auth/Login';
 
 export default function App() {
   return (
     <div className="text-center">
-      <h1 className="font-semibold text-3xl">Hello World</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<AppLayout />} />
+          <Route path="login" element={<Login />} />
+          <Route path="*" element={<h1>Page not found</h1>} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
