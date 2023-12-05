@@ -6,14 +6,12 @@ import Login from './features/auth/Login';
 
 export default function App() {
   return (
-    <div className="text-center">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<AppLayout />} />
-          <Route path="login" element={<Login />} />
-          <Route path="*" element={<h1>Page not found</h1>} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AppLayout />} />
+        <Route path="login" element={<Login />} />
+        <Route path="*" element={<h1>Page not found</h1>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
