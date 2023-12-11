@@ -6,7 +6,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
-    'prettier',
+    'plugin:eslint-plugin-prettier/recommended',
   ],
   settings: {
     react: {
@@ -20,7 +20,7 @@ module.exports = {
     'react-refresh',
     '@typescript-eslint',
     '@typescript-eslint/eslint-plugin',
-    'prettier',
+    'eslint-plugin-prettier',
   ],
   rules: {
     'react-refresh/only-export-components': [

@@ -1,13 +1,19 @@
 import { FC, useState } from 'react';
+
+import { useShoppingList } from '../hooks/useShoppingList';
 import Item from './Item';
+import Spinner from '../../../components/Spinner';
 
 const AllItems: FC = () => {
-  const [items, setItems] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
+  const { isLoading, shoppingListItems } = useShoppingList();
+
+  if (isLoading) return <Spinner />;
+
+  console.log(shoppingListItems);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setItems([...items, inputValue]);
     setInputValue('');
   };
 
@@ -34,8 +40,8 @@ const AllItems: FC = () => {
           </button>
         </div>
       </form>
-      {items.map((item) => {
-        return <Item key={item} name={item} />;
+      {shoppingListItems.map((item) => {
+        return <Item key={item.id} name={item.item} />;
       })}
     </div>
   );
