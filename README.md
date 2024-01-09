@@ -1,4 +1,4 @@
-# Familiary
+# Fambase
 
 A solution for managing neurodivergent households.
 

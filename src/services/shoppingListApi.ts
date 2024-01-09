@@ -1,13 +1,12 @@
 import supabase from './supabase';
 
 interface ShoppingListItem {
-  id: number;
   item: string;
   household: number;
   listed: boolean;
 }
 
-export async function getShoppingListItems(): Promise<ShoppingListItem[]> {
+export const getShoppingListItems = async (): Promise<ShoppingListItem[]> => {
   const { data, error } = await supabase
     .from('shopping-list-items')
     .select('*');
@@ -18,4 +17,18 @@ export async function getShoppingListItems(): Promise<ShoppingListItem[]> {
   }
 
   return data as ShoppingListItem[];
-}
+};
+
+export const submitShoppingListItem = async (newItem: ShoppingListItem) => {
+  const { data, error } = await supabase
+    .from('shopping-list-items')
+    .insert([newItem])
+    .select();
+
+  if (error) {
+    console.error(error);
+    throw new Error('Error creating shopping list item');
+  }
+
+  return data as ShoppingListItem[];
+};
