@@ -1,14 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
-import { getShoppingListItems } from '../../../services/shoppingListApi';
+import {
+  getAllItems,
+  getAllListedItems,
+} from '../../../services/shoppingListApi';
 
-export const useShoppingList = () => {
+export const useShoppingList = (type: 'all' | 'listed') => {
+  const queryFn = type === 'all' ? getAllItems : getAllListedItems;
+
   const {
     isLoading,
     data: shoppingListItems,
     error,
   } = useQuery({
-    queryKey: ['shopping-list-items'],
-    queryFn: getShoppingListItems,
+    queryKey: [type, 'shopping-list-items'],
+    queryFn,
   });
+
   return { isLoading, error, shoppingListItems };
 };

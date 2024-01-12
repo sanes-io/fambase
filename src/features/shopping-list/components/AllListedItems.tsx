@@ -1,12 +1,19 @@
 import { FC } from 'react';
 
-import ListedItem from './ListedItem';
-//import Spinner from '../../../components/Spinner';
+import Item from './Item';
+import { useShoppingList } from '../hooks/useShoppingList';
+import Spinner from '../../../components/Spinner';
 
 const AllListedItems: FC = () => {
+  const { isLoading, shoppingListItems } = useShoppingList('listed');
+
+  if (isLoading) return <Spinner />;
+
   return (
     <div className="flex flex-col items-center">
-      <ListedItem name="Milk" />
+      {shoppingListItems.map((item) => {
+        return <Item key={item.item} name={item.item} listed={true} />;
+      })}
     </div>
   );
 };

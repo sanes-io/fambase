@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 type ItemProps = {
   name: string;
+  listed?: boolean;
 };
 
 const Item: FC<ItemProps> = ({ name }) => {

@@ -7,7 +7,7 @@ import { useAddShoppingListItem } from '../hooks/useAddShoppingListItem';
 
 const AllItems: FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
-  const { isLoading, shoppingListItems } = useShoppingList();
+  const { isLoading, shoppingListItems } = useShoppingList('all');
   const { addShoppingListItem } = useAddShoppingListItem();
 
   if (isLoading) return <Spinner />;

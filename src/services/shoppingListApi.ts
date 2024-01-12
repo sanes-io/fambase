@@ -6,10 +6,24 @@ interface ShoppingListItem {
   listed: boolean;
 }
 
-export const getShoppingListItems = async (): Promise<ShoppingListItem[]> => {
+export const getAllItems = async (): Promise<ShoppingListItem[]> => {
   const { data, error } = await supabase
     .from('shopping-list-items')
     .select('*');
+
+  if (error) {
+    console.error(error);
+    throw new Error('Error getting shopping list items');
+  }
+
+  return data as ShoppingListItem[];
+};
+
+export const getAllListedItems = async (): Promise<ShoppingListItem[]> => {
+  const { data, error } = await supabase
+    .from('shopping-list-items')
+    .select('*')
+    .eq('listed', true);
 
   if (error) {
     console.error(error);
