@@ -11,10 +11,11 @@ export const useShoppingList = (type: 'all' | 'listed') => {
     isLoading,
     data: shoppingListItems,
     error,
+    refetch,
   } = useQuery({
     queryKey: [type, 'shopping-list-items'],
     queryFn,
   });
 
-  return { isLoading, error, shoppingListItems };
+  return { isLoading, error, shoppingListItems, refetch };
 };

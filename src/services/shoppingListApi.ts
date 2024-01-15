@@ -1,10 +1,17 @@
 import supabase from './supabase';
 
-interface ShoppingListItem {
+type NewShoppingListItem = {
   item: string;
   household: number;
   listed: boolean;
-}
+};
+
+export type ShoppingListItem = {
+  id: number;
+  item: string;
+  household: number;
+  listed: boolean;
+};
 
 export const getAllItems = async (): Promise<ShoppingListItem[]> => {
   const { data, error } = await supabase
@@ -33,15 +40,45 @@ export const getAllListedItems = async (): Promise<ShoppingListItem[]> => {
   return data as ShoppingListItem[];
 };
 
-export const submitShoppingListItem = async (newItem: ShoppingListItem) => {
-  const { data, error } = await supabase
+export const submitShoppingListItem = async (newItem: NewShoppingListItem) => {
+  const { data, error }: { data: unknown; error: unknown } = await supabase
     .from('shopping-list-items')
     .insert([newItem])
-    .select();
+    .select()
+    .single();
 
   if (error) {
     console.error(error);
     throw new Error('Error creating shopping list item');
+  }
+
+  return data as ShoppingListItem[];
+};
+
+export const updateItem = async (item: ShoppingListItem) => {
+  const { data, error }: { data: unknown; error: unknown } = await supabase
+    .from('shopping-list-items')
+    .update(item)
+    .eq('id', item.id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error('Error updating shopping list item');
+  }
+
+  return data as ShoppingListItem;
+};
+
+export const updateMultipleItems = async (items: ShoppingListItem[]) => {
+  const { data, error }: { data: unknown; error: unknown } = await supabase
+    .from('shopping-list-items')
+    .upsert(items);
+
+  if (error) {
+    console.error(error);
+    throw new Error('Error updating shopping list items');
   }
 
   return data as ShoppingListItem[];

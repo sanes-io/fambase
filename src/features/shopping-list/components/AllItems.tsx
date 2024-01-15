@@ -46,7 +46,15 @@ const AllItems: FC = () => {
         </div>
       </form>
       {shoppingListItems.map((item) => {
-        return <Item key={item.item} name={item.item} />;
+        return (
+          <Item
+            id={item.id}
+            key={item.item}
+            name={item.item}
+            listed={item.listed}
+            parent="AllItems"
+          />
+        );
       })}
     </div>
   );
