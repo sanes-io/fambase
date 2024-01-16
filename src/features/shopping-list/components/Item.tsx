@@ -24,7 +24,7 @@ const Item: FC<ItemProps> = ({
   onCheckedChange,
 }) => {
   const { updateItem } = useUpdateShoppingListItem();
-  const { deleteItem } = useDeleteItem();
+  const { isPending, deleteItem } = useDeleteItem();
   const [isListed, setIsListed] = useState<boolean>(listed);
   const [checked, setChecked] = useState<boolean>(isChecked);
 
@@ -45,7 +45,6 @@ const Item: FC<ItemProps> = ({
   };
 
   const handleDeleteItem = (id: number) => {
-    console.log(`Clicked delete item ${id}`);
     deleteItem(id);
   };
 
@@ -71,6 +70,7 @@ const Item: FC<ItemProps> = ({
         <button
           className="text-red-500 hover:text-red-700"
           type="button"
+          disabled={isPending}
           onClick={() => handleDeleteItem(id)}
         >
           <HiTrash />

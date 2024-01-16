@@ -13,7 +13,7 @@ export const useShoppingList = (type: 'all' | 'listed') => {
     error,
     refetch,
   } = useQuery({
-    queryKey: [type, 'shopping-list-items'],
+    queryKey: ['shopping-list-items', type],
     queryFn,
   });
 

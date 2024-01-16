@@ -85,7 +85,6 @@ export const updateMultipleItems = async (items: ShoppingListItem[]) => {
 };
 
 export const deleteItem = async (itemId: number) => {
-  console.log(`Item id received in deleteItem: ${itemId}`);
   const { error }: { error: unknown } = await supabase
     .from('shopping-list-items')
     .delete()

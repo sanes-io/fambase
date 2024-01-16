@@ -5,13 +5,19 @@ import toast from 'react-hot-toast';
 export const useDeleteItem = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: deleteItem } = useMutation({
+  const { isPending, mutate: deleteItem } = useMutation({
     mutationFn: (id: number) => deleteItemApi(id),
     onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: ['shopping-list-items'],
+      });
       toast.success('Item deleted');
-      void queryClient.invalidateQueries({ queryKey: ['shopping-list-items'] });
+    },
+    onError: (error) => {
+      toast.error('Error deleting item');
+      console.error(error);
     },
   });
 
-  return { deleteItem };
+  return { isPending, deleteItem };
 };

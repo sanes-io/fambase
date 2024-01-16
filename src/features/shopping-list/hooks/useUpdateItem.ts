@@ -11,8 +11,12 @@ export const useUpdateShoppingListItem = () => {
   const { mutate: updateItem } = useMutation({
     mutationFn: updateItemApi,
     onSuccess: () => {
-      toast.success('Item updated');
       void queryClient.invalidateQueries({ queryKey: ['shopping-list-items'] });
+      toast.success('Item updated');
+    },
+    onError: (error) => {
+      toast.error('Error updating item');
+      console.log(error);
     },
   });
 
@@ -27,6 +31,10 @@ export const useUpdateMultipleItems = () => {
     onSuccess: () => {
       toast.success('Items updated');
       void queryClient.invalidateQueries({ queryKey: ['shopping-list-items'] });
+    },
+    onError: (error) => {
+      toast.error('Error updating items');
+      console.log(error);
     },
   });
 
