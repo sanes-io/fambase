@@ -3,7 +3,7 @@ import { FC, useState } from 'react';
 import { ShoppingListItem } from '../../../services/shoppingListApi';
 import Item from './Item';
 import { useShoppingList } from '../hooks/useShoppingList';
-import { useUpdateMultipleShoppingListItems } from '../hooks/useUpdateItem';
+import { useUpdateMultipleItems } from '../hooks/useUpdateItem';
 import Spinner from '../../../components/Spinner';
 
 const AllListedItems: FC = () => {
@@ -12,16 +12,13 @@ const AllListedItems: FC = () => {
     shoppingListItems = [],
     refetch,
   } = useShoppingList('listed');
-  const { updateMultipleShoppingListItems } =
-    useUpdateMultipleShoppingListItems();
+  const { updateMultipleItems } = useUpdateMultipleItems();
   const [checkedItems, setCheckedItems] = useState<ShoppingListItem[]>([]);
 
   if (isLoading) return <Spinner />;
 
-  console.log(checkedItems);
-
   const handleClearList = () => {
-    updateMultipleShoppingListItems(
+    updateMultipleItems(
       checkedItems.map((item) => {
         return {
           id: item.id,

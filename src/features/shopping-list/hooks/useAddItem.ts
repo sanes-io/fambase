@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { submitShoppingListItem } from '../../../services/shoppingListApi';
+import { submitItem } from '../../../services/shoppingListApi';
 import toast from 'react-hot-toast';
 
-export const useAddShoppingListItem = () => {
+export const useAddItem = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: addShoppingListItem } = useMutation({
-    mutationFn: submitShoppingListItem,
+  const { mutate: addItem } = useMutation({
+    mutationFn: submitItem,
     onSuccess: () => {
       toast.success('Item added to list');
       void queryClient.invalidateQueries({ queryKey: ['shopping-list-items'] });
@@ -15,5 +15,5 @@ export const useAddShoppingListItem = () => {
       toast.error('Error adding item to list');
     },
   });
-  return { addShoppingListItem };
+  return { addItem };
 };

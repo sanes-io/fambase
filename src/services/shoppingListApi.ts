@@ -40,7 +40,7 @@ export const getAllListedItems = async (): Promise<ShoppingListItem[]> => {
   return data as ShoppingListItem[];
 };
 
-export const submitShoppingListItem = async (newItem: NewShoppingListItem) => {
+export const submitItem = async (newItem: NewShoppingListItem) => {
   const { data, error }: { data: unknown; error: unknown } = await supabase
     .from('shopping-list-items')
     .insert([newItem])
@@ -82,4 +82,17 @@ export const updateMultipleItems = async (items: ShoppingListItem[]) => {
   }
 
   return data as ShoppingListItem[];
+};
+
+export const deleteItem = async (itemId: number) => {
+  console.log(`Item id received in deleteItem: ${itemId}`);
+  const { error }: { error: unknown } = await supabase
+    .from('shopping-list-items')
+    .delete()
+    .eq('id', itemId);
+
+  if (error) {
+    console.error(error);
+    throw new Error('Error deleting shopping list item');
+  }
 };

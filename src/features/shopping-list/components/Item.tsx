@@ -1,5 +1,9 @@
 import { FC, useState } from 'react';
+
 import { useUpdateShoppingListItem } from '../hooks/useUpdateItem';
+import { useDeleteItem } from '../hooks/useDeleteItem';
+
+import { HiTrash } from 'react-icons/hi2';
 
 type ItemProps = {
   id: number;
@@ -19,12 +23,13 @@ const Item: FC<ItemProps> = ({
   isChecked,
   onCheckedChange,
 }) => {
-  const { updateShoppingListItem } = useUpdateShoppingListItem();
+  const { updateItem } = useUpdateShoppingListItem();
+  const { deleteItem } = useDeleteItem();
   const [isListed, setIsListed] = useState<boolean>(listed);
   const [checked, setChecked] = useState<boolean>(isChecked);
 
   const handleListedChange = () => {
-    updateShoppingListItem({
+    updateItem({
       id: id,
       item: name,
       household: 1,
@@ -37,6 +42,11 @@ const Item: FC<ItemProps> = ({
     const newCheckedValue = !checked;
     setChecked(newCheckedValue);
     onCheckedChange(newCheckedValue);
+  };
+
+  const handleDeleteItem = (id: number) => {
+    console.log(`Clicked delete item ${id}`);
+    deleteItem(id);
   };
 
   return (
@@ -58,6 +68,13 @@ const Item: FC<ItemProps> = ({
             {isListed ? 'Remove' : 'Add'}
           </button>
         )}
+        <button
+          className="text-red-500 hover:text-red-700"
+          type="button"
+          onClick={() => handleDeleteItem(id)}
+        >
+          <HiTrash />
+        </button>
       </p>
     </div>
   );

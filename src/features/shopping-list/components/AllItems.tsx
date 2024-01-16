@@ -3,18 +3,18 @@ import { FC, useState } from 'react';
 import Item from './Item';
 import Spinner from '../../../components/Spinner';
 import { useShoppingList } from '../hooks/useShoppingList';
-import { useAddShoppingListItem } from '../hooks/useAddShoppingListItem';
+import { useAddItem } from '../hooks/useAddItem';
 
 const AllItems: FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
   const { isLoading, shoppingListItems } = useShoppingList('all');
-  const { addShoppingListItem } = useAddShoppingListItem();
+  const { addItem } = useAddItem();
 
   if (isLoading) return <Spinner />;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    addShoppingListItem({
+    addItem({
       item: inputValue,
       household: 1,
       listed: false,
