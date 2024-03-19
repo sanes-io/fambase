@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import AllItems from './components/AllItems';
 import AllListedItems from './components/AllListedItems';
 
 const ShoppingList = () => {
-  const [selectedTab, setSelectedTab] = useState('AllListedItems');
-
   return (
-    <>
-      <button onClick={() => setSelectedTab('AllListedItems')}>
-        Shopping List
-      </button>
-      <button onClick={() => setSelectedTab('AllItems')}>All Items</button>
+    <Tabs variant="enclosed">
+      <TabList>
+        <Tab>Shopping List</Tab>
+        <Tab>All Items</Tab>
+      </TabList>
 
-      {selectedTab === 'AllListedItems' ? <AllListedItems /> : <AllItems />}
-    </>
+      <TabPanels>
+        <TabPanel>
+          <AllListedItems />
+        </TabPanel>
+        <TabPanel>
+          <AllItems />
+        </TabPanel>
+      </TabPanels>
+    </Tabs>
   );
 };
 
