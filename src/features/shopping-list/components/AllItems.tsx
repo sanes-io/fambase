@@ -33,7 +33,7 @@ const AllItems: FC = () => {
           <input
             type="text"
             placeholder="Add item"
-            className="flex-grow p-2 text-lg border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+            className="flex-grow p-2 text-l grounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent border border-blue-400 rounded-l-md"
             value={inputValue}
             onChange={handleChange}
           />

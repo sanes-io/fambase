@@ -4,7 +4,7 @@ import AllListedItems from './components/AllListedItems';
 
 const ShoppingList = () => {
   return (
-    <Tabs variant="enclosed">
+    <Tabs variant="line">
       <TabList>
         <Tab>Shopping List</Tab>
         <Tab>All Items</Tab>

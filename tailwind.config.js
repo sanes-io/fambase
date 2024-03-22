@@ -8,6 +8,9 @@ module.exports = {
         screen: '100dvh',
       },
     },
+    fontFamily: {
+      varela: ['Varela Round', 'sans-serif'],
+    },
   },
   plugins: [],
 };

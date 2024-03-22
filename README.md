@@ -1,7 +1,21 @@
 # Fambase
 
-A solution for managing neurodivergent households.
+A household management application that allows users to create and manage a shared calendar, shopping list, and to-do list.
 
-## Kanban board
+Built with React and Supabase.
 
-https://app.clickup.com/9015138351/v/l/li/901500813479
+## Features
+
+### Currently Implemented
+
+#### Shopping list
+
+- Keep a full list of items needed for the household
+- Easily add items to your shopping list, and check them off as you go
+- Reuse commonly bought items
+
+### Planned Features
+
+- Family calendar
+- Household chore manager
+- Event planner
