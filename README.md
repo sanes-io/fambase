@@ -16,6 +16,7 @@ Built with React and Supabase.
 
 ### Planned Features
 
+- Recipe manager
 - Family calendar
 - Household chore manager
 - Event planner
